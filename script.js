@@ -43,7 +43,7 @@ const isGameOver = (guess) => {
         isHighScore();
     }
 
-    // If score = 0 then game over
+    // If score > 0 then
     if (score === 1) {
         // add loser class to body, display winning number and disable button
         updateScore(guess);
@@ -52,8 +52,11 @@ const isGameOver = (guess) => {
         document.body.classList.add('loser');
         numberEl.textContent = randomNumber;
         messageEl.textContent = '💥 You lost the game!';
-    } else {
-        // run if wrong guess
+    } else if (guess > randomNumber) {
+        messageEl.textContent = 'Your guess is too high ⬆';
+        updateScore(guess);
+    } else if (guess < randomNumber) {
+        messageEl.textContent = 'Your guess is too low ⬇';
         updateScore(guess);
     }
 };
@@ -62,17 +65,10 @@ const isGameOver = (guess) => {
 checkBtn.addEventListener('click', () => {
     // User's guess
     const guess = Number(guessInput.value);
-
     // Chek if number is valid, high, low and correct answer
     if (!guess || guess > 20 || guess < 1) {
         messageEl.textContent = '⛔ Invalid Number!';
-    } else if (guess === randomNumber) {
-        isGameOver(guess);
-    } else if (guess > randomNumber) {
-        messageEl.textContent = 'Your guess is too high ⬆';
-        isGameOver(guess);
-    } else if (guess < randomNumber) {
-        messageEl.textContent = 'Your guess is too low ⬇';
+    } else {
         isGameOver(guess);
     }
 });
@@ -96,7 +92,7 @@ playAgainBtn.addEventListener('click', () => {
     // Hide Winning number
     numberEl.innerText = '?';
 
-    // Change Score to 20
+    // Change score to 20
     score = 20;
     scoreEl.innerText = score;
 
