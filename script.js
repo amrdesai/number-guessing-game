@@ -97,4 +97,7 @@ playAgainBtn.addEventListener('click', () => {
     // Change Score to 20
     score = 20;
     scoreEl.innerText = score;
+
+    // Clear Message
+    messageEl.innerText = 'Start guessing...';
 });
