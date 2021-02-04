@@ -52,11 +52,10 @@ const isGameOver = (guess) => {
         document.body.classList.add('loser');
         numberEl.textContent = randomNumber;
         messageEl.textContent = '💥 You lost the game!';
-    } else if (guess > randomNumber) {
-        messageEl.textContent = 'Your guess is too high ⬆';
-        updateScore(guess);
-    } else if (guess < randomNumber) {
-        messageEl.textContent = 'Your guess is too low ⬇';
+    } else {
+        guess > randomNumber
+            ? (messageEl.textContent = 'Your guess is too high ⬆')
+            : (messageEl.textContent = 'Your guess is too low ⬇');
         updateScore(guess);
     }
 };
