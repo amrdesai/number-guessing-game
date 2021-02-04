@@ -41,6 +41,7 @@ const isGameOver = (guess) => {
         numberEl.textContent = randomNumber;
         messageEl.textContent = '🎉 You guessed the correct number!';
         isHighScore();
+        return;
     }
 
     // If score > 0 then
