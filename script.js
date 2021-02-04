@@ -77,25 +77,19 @@ checkBtn.addEventListener('click', () => {
 playAgainBtn.addEventListener('click', () => {
     // Reset random number
     randomNumber = Math.trunc(Math.random() * 20 + 1);
-
     // Change backround
     document.body.classList.remove('loser');
     document.body.classList.remove('winner');
-
     // Enable buttons
     checkBtn.disabled = false;
     checkBtn.classList.remove('game-over');
-
     // Clear input
     guessInput.value = '';
-
     // Hide Winning number
     numberEl.innerText = '?';
-
     // Change score to 20
     score = 20;
     scoreEl.innerText = score;
-
     // Clear Message
     messageEl.innerText = 'Start guessing...';
 });
