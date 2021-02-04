@@ -32,17 +32,8 @@ const isHighScore = () => {
 
 // Function: Check if game over
 const isGameOver = (guess) => {
-    // If score = 0 then game over
-    if (score === 0) {
-        // add loser class to body, display winning number and disable button
-        checkBtn.disabled = true;
-        checkBtn.classList.add('game-over');
-        document.body.classList.add('loser');
-        numberEl.textContent = randomNumber;
-        messageEl.textContent = '💥 You lost the game!';
-    }
     // If user guessed the correct answer; Game Over!
-    else if (guess === randomNumber) {
+    if (guess === randomNumber) {
         // add winner class to body, display winning number & disable button
         checkBtn.disabled = true;
         checkBtn.classList.add('game-over');
@@ -50,6 +41,17 @@ const isGameOver = (guess) => {
         numberEl.textContent = randomNumber;
         messageEl.textContent = '🎉 You guessed the correct number!';
         isHighScore();
+    }
+
+    // If score = 0 then game over
+    if (score === 1) {
+        // add loser class to body, display winning number and disable button
+        updateScore(guess);
+        checkBtn.disabled = true;
+        checkBtn.classList.add('game-over');
+        document.body.classList.add('loser');
+        numberEl.textContent = randomNumber;
+        messageEl.textContent = '💥 You lost the game!';
     } else {
         // run if wrong guess
         updateScore(guess);
