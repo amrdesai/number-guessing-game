@@ -111,6 +111,11 @@ h1 {
     background-color: #ccc;
 }
 
+.btn.game-over {
+    cursor: not-allowed;
+    background-color: rgb(116, 102, 102);
+}
+
 .message {
     margin-bottom: 8rem;
     height: 3rem;
