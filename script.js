@@ -12,8 +12,7 @@ const guessInput = document.querySelector('.guess');
 
 // Generate random number
 let randomNumber = Math.trunc(Math.random() * 20 + 1);
-
-// Score
+// Game score
 let score = 20;
 
 // Function: Reduce score if wrong answer
@@ -24,7 +23,7 @@ const updateScore = (guess) => {
     }
 };
 
-// Function: Check if high score
+// Function: Check if your score is high score
 const isHighScore = () => {
     if (score > highScoreEl.innerText) {
         highScoreEl.textContent = score;
@@ -51,7 +50,6 @@ const isGameOver = (guess) => {
         numberEl.textContent = randomNumber;
         messageEl.textContent = '🎉 You guessed the correct number!';
         isHighScore();
-        console.log(score, highScoreEl.value);
     } else {
         // run if wrong guess
         updateScore(guess);
@@ -60,7 +58,7 @@ const isGameOver = (guess) => {
 
 // Event Listener: Check Btn Event
 checkBtn.addEventListener('click', () => {
-    // Guessed Number
+    // User's guess
     const guess = Number(guessInput.value);
 
     // Chek if number is valid, high, low and correct answer
@@ -95,4 +93,8 @@ playAgainBtn.addEventListener('click', () => {
 
     // Hide Winning number
     numberEl.innerText = '?';
+
+    // Change Score to 20
+    score = 20;
+    scoreEl.innerText = score;
 });
