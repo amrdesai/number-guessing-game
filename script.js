@@ -11,13 +11,13 @@ const playAgainBtn = document.querySelector('.again');
 const guessInput = document.querySelector('.guess');
 
 // Generate random number
-let randomNumber = Math.trunc(Math.random() * 20 + 1);
+let winningNumber = Math.trunc(Math.random() * 20 + 1);
 // Game score
 let score = 20;
 
 // Function: Reduce score if wrong answer
 const updateScore = (guess) => {
-    if (guess !== randomNumber) {
+    if (guess !== winningNumber) {
         score -= 1;
         scoreEl.innerText = score;
     }
@@ -33,12 +33,12 @@ const isHighScore = () => {
 // Function: Check if game over
 const isGameOver = (guess) => {
     // If user guessed the correct answer; Game Over!
-    if (guess === randomNumber) {
+    if (guess === winningNumber) {
         // add winner class to body, display winning number & disable button
         checkBtn.disabled = true;
         checkBtn.classList.add('game-over');
         document.body.classList.add('winner');
-        numberEl.textContent = randomNumber;
+        numberEl.textContent = winningNumber;
         messageEl.textContent = '🎉 You guessed the correct number!';
         isHighScore();
         return;
@@ -51,10 +51,10 @@ const isGameOver = (guess) => {
         checkBtn.disabled = true;
         checkBtn.classList.add('game-over');
         document.body.classList.add('loser');
-        numberEl.textContent = randomNumber;
+        numberEl.textContent = winningNumber;
         messageEl.textContent = '💥 You lost the game!';
     } else {
-        guess > randomNumber
+        guess > winningNumber
             ? (messageEl.textContent = 'Your guess is too high ⬆')
             : (messageEl.textContent = 'Your guess is too low ⬇');
         updateScore(guess);
@@ -76,7 +76,7 @@ checkBtn.addEventListener('click', () => {
 // Event Listener: Play Again
 playAgainBtn.addEventListener('click', () => {
     // Reset random number
-    randomNumber = Math.trunc(Math.random() * 20 + 1);
+    winningNumber = Math.trunc(Math.random() * 20 + 1);
     // Change backround
     document.body.classList.remove('loser');
     document.body.classList.remove('winner');
